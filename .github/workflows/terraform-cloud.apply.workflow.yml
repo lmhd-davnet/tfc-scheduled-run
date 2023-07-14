@@ -2,7 +2,10 @@
 ---
 name: Terraform Cloud Apply Run
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: '* * * * *'
+  workflow_dispatch:
 
 env:
   TF_CLOUD_ORGANIZATION: "lmhd"
