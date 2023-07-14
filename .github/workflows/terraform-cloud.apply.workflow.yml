@@ -4,7 +4,7 @@ name: Terraform Cloud Apply Run
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '30 * * * *'
   workflow_dispatch:
 
 env:
