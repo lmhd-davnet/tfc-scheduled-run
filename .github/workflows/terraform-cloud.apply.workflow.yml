@@ -3,9 +3,9 @@
 name: Terraform Cloud Apply Run
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/5 * * * *'
-  workflow_dispatch:
 
 env:
   TF_CLOUD_ORGANIZATION: "lmhd"
@@ -13,6 +13,8 @@ env:
 
 jobs:
   apply:
+    # should be plenty of time to kick off runs. we don't actually need to wait for an apply
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
