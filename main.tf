@@ -34,6 +34,17 @@ locals {
   ])
 }
 
+resource "local_file" "workflow" {
+  content = templatefile(
+    "workflow.tmpl.yml",
+    {
+      workspaces = local.workspaces,
+    }
+  )
+
+  filename = ".github/workflows/terraform-cloud.apply.workflow.yml"
+}
+
 data "tfe_workspace" "ws" {
   for_each = local.workspaces
   name     = each.key

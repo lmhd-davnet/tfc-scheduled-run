@@ -9,7 +9,7 @@ on:
 
 env:
   TF_CLOUD_ORGANIZATION: "lmhd"
-  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_API_TOKEN: "$${{ secrets.TF_API_TOKEN }}"
 
 jobs:
   apply:
@@ -19,16 +19,12 @@ jobs:
       fail-fast: false
       matrix:
         workspace:
-          - aws-sso
-          - better-uptime
-          - bootstrap-aws_creds-lmhd_root
-          - dns
-          - tfc-jwt-test
-          - vault
-          - vault-okta
+%{ for ws in workspaces ~}
+          - ${ws}
+%{ endfor ~}
     runs-on: ubuntu-latest
     steps:
       - uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.2
         id: create-run
         with:
-          workspace: ${{ matrix.workspace }}
+          workspace: $${{ matrix.workspace }}
