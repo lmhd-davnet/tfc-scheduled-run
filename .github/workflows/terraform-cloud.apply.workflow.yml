@@ -11,6 +11,7 @@ env:
 jobs:
   apply:
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - vault
