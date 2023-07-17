@@ -55,7 +55,7 @@ resource "tfe_team_access" "access" {
 
   permissions {
     run_tasks         = false
-    runs              = "plan"
+    runs              = "apply"
     sentinel_mocks    = "none"
     state_versions    = "none"
     variables         = "none"
